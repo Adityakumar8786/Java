@@ -1,0 +1,26 @@
+class Stringcompression {
+    public static void compression(String str){
+String newstr =""; 
+for(int i = 0 ; i < str.length() ; i++){
+    Integer count = 0 ; 
+    while(i<str.length()-1  && str.charAt(i) ==str.charAt(i+1) ){
+        count++ ; 
+        i++ ;
+    }
+    if(count>0){
+        newstr += str.charAt(i)+count.toString() ; 
+    }
+    else{
+        newstr += str.charAt(i); 
+
+    }
+}
+System.out.print(newstr);
+    }
+
+    public static void main(String []args)
+{
+String str = "aakaash";
+compression(str);
+}
+}

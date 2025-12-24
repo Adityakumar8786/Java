@@ -1,0 +1,77 @@
+public class longestwordwithallprefix {
+
+    public static class Node{
+        Node[] children = new Node[26] ; 
+        boolean eow = false ; 
+
+        public Node(){
+
+            for(int i = 0 ; i< 26 ; i++){
+            children[i] = null ; 
+            }
+
+        }
+
+    }
+
+
+    static Node root = new Node() ; 
+
+    public static void insert(String word){
+
+        Node currentNode = root ; 
+
+        for( int i = 0 ; i < word.length() ; i++){
+int idx = word.charAt(i) - 'a' ;
+
+if(currentNode.children[idx] == null){
+    currentNode.children[idx] = new Node() ;
+}
+
+currentNode = currentNode.children[idx] ;
+}
+
+currentNode.eow = true ; 
+    }
+
+static String ans="" ;
+
+public static void longestword(Node root , StringBuilder temp){
+
+    if(root == null){
+        return  ;
+    }
+
+    for(int i = 0 ; i<26 ; i++){
+
+      if(root.children[i] != null && root.children[i].eow == true){
+
+char ch = (char)(i+'a') ; 
+
+temp.append(ch) ; 
+
+if(temp.length() > ans.length()){
+ans = temp.toString() ;
+}
+
+longestword(root.children[i], temp); 
+
+temp.deleteCharAt(temp.length()-1) ; 
+
+      }
+
+
+    }
+}
+    public static void main(String[] args){
+
+        String words[] = {"a","banana","app","apple","apply","ap","appl"};
+
+        for(int i = 0 ; i< words.length ; i++){
+            insert(words[i]);
+        }
+
+        longestword(root,new StringBuilder());
+        System.out.println(ans) ;
+    }
+}

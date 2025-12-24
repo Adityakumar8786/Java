@@ -1,0 +1,23 @@
+import java.util.Arrays ;
+import java.util.Comparator; 
+public class MaxlengthChain {
+ static int pairs[][] = {{5,24},{39,60},{5,28},{27,40},{50,90}} ; 
+ public static void main(String args[]){
+
+    Arrays.sort(pairs , Comparator.comparingDouble(o->o[1])); 
+
+    int chainlen = 1 ; 
+    int chainend = pairs[0][1] ; 
+
+    for (int i = 1 ; i < pairs.length ; i++){
+        if(pairs[i][0] > chainend){
+            chainend = pairs[i][1] ; 
+            chainlen ++ ; 
+        }
+    }
+
+
+    System.out.println(chainlen);
+ }
+ 
+}
